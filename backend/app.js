@@ -38,6 +38,17 @@ app.use("/like", likeRouter);
 app.use("/detail", detailRouter);
 app.use("/review", reviewRouter);
 
+//mongodb연결을위해 비밀번호 가림
+const dotenv=require('dotenv');
+dotenv.config();
+
+//mongodb 연결
+const mongoose =require("mongoose");
+mongoose.connect(
+  process.env.MONGO_URI
+).then(()=>console.log("Connecting"))
+.catch(err=>console.log(err));
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
