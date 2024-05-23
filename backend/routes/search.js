@@ -5,7 +5,26 @@ const Restaurant=require('../models/Restaurant')
 
 
 
-
+router.get('/api/data',async (req,res)=>{
+    const query=req.query.value;
+    
+    const hi = async (query) => {
+        try {
+            const results = await Restaurant.find({ name: { $regex: query } });
+            return results;
+        } catch (err) {
+            console.error(err); 
+        }
+    };
+    try{
+        const result= await hi(query);
+        res.json({result})
+    }catch{
+        res.status(500).json({ error: err.message });
+    }
+    
+   
+})
 
 
 
