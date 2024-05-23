@@ -22,8 +22,6 @@ router.post("/login", async (req, res, next) => {
     const tokenMaxAge = 60 * 60 * 24 * 3;
     const token = createToken(user, tokenMaxAge);
 
-    user.token = token;
-
     res.cookie("authToken", token, {
       httpOnly: true,
       maxAge: tokenMaxAge * 1000,
