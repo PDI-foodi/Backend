@@ -26,6 +26,7 @@ router.get('/api/data',async (req,res)=>{
    
 })
 
+module.exports = router;
 
 
 
