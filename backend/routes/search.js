@@ -34,16 +34,15 @@ router.get('/api/data',async (req,res)=>{
 
 
 
-module.exports = router;
+// module.exports = router;
+
+//  let Board = require('../models/Restaurant');
 
 
-// let Board = require('../models/Restaurant');
+//  router.post('/', async (req, res, next) => {
 
+// console.log(req.body); 
+// const board = await Board.create(req.body);
+//  res.status(200).json(board);
 
-// router.post('/', async (req, res, next) => {
-
-//     console.log(req.body); 
-//     const board = await Board.create(req.body);
-//     res.status(200).json(board);
-
-// });
+//  });
