@@ -1,0 +1,103 @@
+[
+  {
+    "name": "써브웨이 성수역점",
+    "category": "패스트푸드",
+    "menu": "이탈리안 비엠티 썹픽",
+    "price": 6700,
+    "imglink": "https://ldb-phinf.pstatic.net/20200103_82/1578043664049aVIC6_JPEG/oSo1QnUl87teoesK_lCcVLN0.jpg",
+    "location": "서울특별시 성동구 아차산로 113 삼진빌딩 1층",
+    "phonenumber": "02-497-2800",
+    "rate": 0
+  },
+  {
+    "name": "자연도소금빵in 성수",
+    "category": "디저트",
+    "menu": "자연도소금빵 ",
+    "price": 12000,
+    "imglink": "https://ldb-phinf.pstatic.net/20230821_10/1692624841117gCCt1_JPEG/KakaoTalk_20230821_223246131.jpg",
+    "location": "서울특별시 성동구 연무장길 56-1 1층",
+    "phonenumber": "02-463-2245",
+    "rate": 0
+  },
+  {
+    "name": "빽다방 성수역롯데캐슬점",
+    "category": "디저트",
+    "menu": "앗!메리카노ICE",
+    "price": 2000,
+    "imglink": "https://ldb-phinf.pstatic.net/20191215_82/1576421083457vM5PV_JPEG/MAGK789zfrM1_Z5_KT3_A0AL.jpg",
+    "location": "서울특별시 성동구 성수이로 113",
+    "phonenumber": "0507-2093-2252",
+    "rate": 0
+  },
+  {
+    "name": "메가MGC커피 성수역점",
+    "category": "디저트",
+    "menu": "아이스 아메리카노",
+    "price": 2000,
+    "imglink": "https://ldb-phinf.pstatic.net/20200309_170/1583748648376cgvH2_JPEG/ZNgqfUqCOxLrMtEYbnSMzJA_.jpg",
+    "location": "서울특별시 성동구 아차산로 113 104호 메가MGC커피",
+    "phonenumber": "0507-1434-1032",
+    "rate": 0
+  },
+  {
+    "name": "매머드익스프레스 성수역점",
+    "category": "디저트",
+    "menu": "아메리카노 M ",
+    "price": 1600,
+    "imglink": "https://ldb-phinf.pstatic.net/20210714_6/1626255355526Rphml_JPEG/B6YBMN5p2IcxnoYzxlPUVsRq.jpeg.jpg",
+    "location": "서울특별시 성동구 성수이로 108 1층 5호",
+    "phonenumber": "070-7761-0061",
+    "rate": 0
+  },
+  {
+    "name": "탐광",
+    "category": "일식",
+    "menu": "에비가츠동",
+    "price": 140000,
+    "imglink": "https://ldb-phinf.pstatic.net/20240423_136/1713851653797OUrsO_JPEG/KakaoTalk_20240423_144110691_02.jpg",
+    "location": "서울특별시 성동구 연무장5가길 26",
+    "phonenumber": "070-8869-3333",
+    "rate": 0
+  },
+  {
+    "name": "어니언 성수",
+    "category": "디저트",
+    "menu": "팡도르",
+    "price": 6000,
+    "imglink": "https://ldb-phinf.pstatic.net/20230612_255/1686562488552F0Omh_PNG/LOGO.png",
+    "location": "서울특별시 성동구 아차산로9길 8 어니언",
+    "phonenumber": "0507-1386-3238",
+    "rate": 0
+  },
+  {
+    "name": "피자시즌",
+    "category": "패스트푸드",
+    "menu": "치즈 피자 ",
+    "price": 16000,
+    "imglink": "https://ldb-phinf.pstatic.net/20231213_113/1702438849077KI92W_JPEG/IMG_0262_1600.jpg",
+    "location": "서울특별시 성동구 성수이로14길 14 성수연방 1층 피자시즌",
+    "phonenumber": "0507-1310-6904",
+    "rate": 0
+  },
+  {
+    "name": "스케줄 성수",
+    "category": "양식",
+    "menu": "[런치] 2인 SET  ",
+    "price": 54000,
+    "imglink": "https://ldb-phinf.pstatic.net/20240509_77/1715249145212jvms9_JPEG/IMG_3083.JPG",
+    "location": "서울특별시 성동구 아차산로 104 2층",
+    "phonenumber": "0507-1349-7458",
+    "rate": 0
+  },
+
+  {
+    "name": "미각짬뽕양꼬치",
+    "category": "중식",
+    "menu": "생 양꼬치 ",
+    "price": " 14,000",
+    "imglink": "https://ldb-phinf.pstatic.net/20221206_23/1670290709470nNyau_JPEG/20221205_145041%B0%A3%C6%C7.jpg",
+    "location": "서울특별시 성동구 성수일로8길 39",
+    "phonenumber": "02-461-5678",
+    "rate": 0
+  }
+]
