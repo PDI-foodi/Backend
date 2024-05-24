@@ -4,7 +4,6 @@ const reviewSchema = new mongoose.Schema(
   {
     userId: { type: Number, required: true },
     content: { type: String, required: true },
-    createdAt: { type: Date, required: true },
   },
   {
     timestamps: true,
