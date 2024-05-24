@@ -6,8 +6,15 @@ const LikeSchema = require("../models/Like");
 /* router.get("/:id", (req, res) => {
   console.log(req.data);
 }); */
+
 router.get("/", (req, res) => {
   Restaurant.find().then((result) => {
+    res.json(result);
+  });
+});
+
+router.get("/like", (req, res) => {
+  LikeSchema.find().then((result) => {
     res.json(result);
   });
 });
