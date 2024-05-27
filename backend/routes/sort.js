@@ -16,6 +16,15 @@ const Restaurant=require('../models/Restaurant')
 //     }
 // });
 
+router.get('/',async (req,res)=>{
+    try{
+        const all=await Restaurant.find();
+        res.json(all);
+    }catch{
+        res.status(500).send(error);
+    }
+})
+
 router.get('/korea',async (req,res)=>{
     try{
         const food=await Restaurant.find();
