@@ -12,6 +12,9 @@ const searchRouter = require("./routes/search");
 const likeRouter = require("./routes/like");
 const detailRouter = require("./routes/detail");
 const reviewRouter = require("./routes/review");
+const imageRouter = require("./routes/image");
+const cors=require("cors");
+
 
 var app = express();
 
@@ -25,6 +28,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+
+app.use(cors());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/ranking", rankingRouter);
@@ -33,6 +38,8 @@ app.use("/search", searchRouter);
 app.use("/like", likeRouter);
 app.use("/detail", detailRouter);
 app.use("/review", reviewRouter);
+app.use("/image",imageRouter);
+
 
 //mongodb연결을위해 비밀번호 가림
 const dotenv = require("dotenv");
