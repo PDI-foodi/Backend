@@ -4,7 +4,7 @@ const Restaurant = require("../models/Restaurant");
 
 router.get("/", (req, res) => {
   Restaurant.find()
-    .select("imglink name rate category")
+    .select("_id imglink name rate category")
     .sort({ rate: -1 })
     .limit(10)
     .then((result) => {
