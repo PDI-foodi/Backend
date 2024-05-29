@@ -9,9 +9,11 @@ router.post("/signup", async (req, res, next) => {
     const user = await User.signUp(id, password, nickname);
     res.status(201).json(user);
   } catch (err) {
-    console.error(err);
-    res.status(400).json({ message: err.message });
-    next(err);
+    if (err.name === 'IdDuplicatedError'){
+      return res.status(409).json({ message: err.message });
+    } else if (err.name === 'NicknameDuplicatedError'){
+      return res.status(409).json({ message: err.message });
+    }
   }
 });
 
@@ -30,9 +32,11 @@ router.post("/login", async (req, res, next) => {
     console.log(user);
     res.status(200).json(user);
   } catch (err) {
-    console.error(err);
-    res.status(400).json({ message: err.message });
-    next(err);
+    if (err.name === 'IdNotFoundError'){
+      return res.status(404).json({ message: err.message });
+    } else if (err.name === 'PasswordMismatchError'){
+      return res.status(401).json({ message: err.message });
+    }
   }
 });
 

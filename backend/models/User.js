@@ -3,16 +3,31 @@ const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema(
   {
-    id: { type: String, required: [true, "아이디를 입력하세요."] },
+    id: { type: String, required: [true, "아이디를 입력하세요."], unique: true},
     password: { type: String, required: [true, "비밀번호를 입력하세요."] },
-    nickname: { type: String, required: [true, "닉네임을 입력하세요."] },
+    nickname: { type: String, required: [true, "닉네임을 입력하세요."], unique: true},
   },
   {
     timestamps: true,
   }
 );
 
+
 userSchema.statics.signUp = async function (id, password, nickname) {
+  const idExist = await this.findOne({ id });
+  if (idExist) {
+    const error = new Error("이미 존재하는 아이디입니다.");
+    error.name = 'IdDuplicatedError';
+    throw error;
+  } 
+  
+  const nicknameExist = await this.findOne({ nickname});
+  if (nicknameExist) {
+    const error = new Error("이미 존재하는 닉네임입니다.");
+    error.name = 'NicknameDuplicatedError';
+    throw error;
+  }
+
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
   const user = await this.create({ id, password: hashedPassword, nickname });
@@ -29,9 +44,13 @@ userSchema.statics.login = async function (id, password) {
     if (auth) {
       return user.visibleUser;
     }
-    throw Error("incorrect password");
+    const error = new Error("비밀번호가 일치하지 않습니다.");
+    error.name = 'PasswordMismatchError';
+    throw error;
   }
-  throw Error("incorrect id");
+  const error = new Error("존재하지 않는 아이디입니다.");
+  error.name = 'IdNotFoundError';
+  throw error;
 };
 
 const visibleUser = userSchema.virtual("visibleUser");
