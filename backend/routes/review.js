@@ -19,7 +19,18 @@ router.post("/", async (req, res, next) => {
     }
 
     const review = await Review.create({ userId, restaurantId, content, rate });
-    const allReview = await Review.find({ restaurantId: restaurantId });
+
+    const allReview = await Review.find({ restaurantId, restaurantId });
+    const averageRate =
+      allReview.reduce((sum, review) => sum + review.rate, 0) /
+      allReview.length;
+    // 평균 계산
+    const averageRateRounded = parseFloat(averageRate.toFixed(1));
+    //전체 평균 업데이트
+    await Restaurant.findByIdAndUpdate(restaurantId, {
+      rate: averageRateRounded,
+    });
+
     res.status(201).json(review);
     console.log(review);
   } catch (err) {
@@ -38,18 +49,40 @@ router.put("/:commentId", async (req, res) => {
     content,
     rate,
   });
+
+  const review = await Review.find({ restaurantId, restaurantId });
+  const averageRate =
+    review.reduce((sum, review) => sum + review.rate, 0) / review.length;
+  // 평균 계산
+  const averageRateRounded = parseFloat(averageRate.toFixed(1));
+  //전체 평균 업데이트
+  await Restaurant.findByIdAndUpdate(restaurantId, {
+    rate: averageRateRounded,
+  });
+
   res.status(200).json("update successful");
 });
 
 //삭제
 router.delete("/:commentId", async (req, res) => {
   try {
-    console.log(req.params.commentId);
     const review = await Review.findById(req.params.commentId);
     if (!review) {
       return res.status(404).json({ message: "Review not found" });
     }
+    const restaurantId = review.restaurantId;
     await review.deleteOne();
+
+    const allReview = await Review.find({ restaurantId, restaurantId });
+    const averageRate =
+      allReview.reduce((sum, review) => sum + review.rate, 0) /
+      allReview.length;
+    // 평균 계산
+    const averageRateRounded = parseFloat(averageRate.toFixed(1));
+    //전체 평균 업데이트
+    await Restaurant.findByIdAndUpdate(restaurantId, {
+      rate: averageRateRounded,
+    });
 
     res.status(200).json("successful");
   } catch (err) {
