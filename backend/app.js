@@ -13,6 +13,7 @@ const likeRouter = require("./routes/like");
 const detailRouter = require("./routes/detail");
 const reviewRouter = require("./routes/review");
 const imageRouter = require("./routes/image");
+const nicknameRouter = require("./routes/nickname");
 const cors=require("cors");
 
 
@@ -39,6 +40,7 @@ app.use("/like", likeRouter);
 app.use("/detail", detailRouter);
 app.use("/review", reviewRouter);
 app.use("/image",imageRouter);
+app.use("/nickname",nicknameRouter);
 
 
 //mongodb연결을위해 비밀번호 가림
