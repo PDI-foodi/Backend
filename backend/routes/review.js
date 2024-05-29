@@ -29,10 +29,20 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-/* router.get("/:id", async (req, res) => {
-  Review.findById(req.params.id).then((result) => {
-    console.log(result);
-  });
-}); */
+router.delete("/:commentId", async (req, res) => {
+  try {
+    console.log(req.params.commentId);
+    const review = await Review.findById(req.params.commentId);
+    if (!review) {
+      return res.status(404).json({ message: "Review not found" });
+    }
+    await review.deleteOne();
+
+    res.status(200).json("successful");
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ message: err.message });
+  }
+});
 
 module.exports = router;
