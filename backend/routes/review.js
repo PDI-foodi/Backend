@@ -29,6 +29,19 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+//수정
+router.put("/:commentId", async (req, res) => {
+  const { userId, restaurantId, content, rate } = req.body;
+  const result = await Review.findByIdAndUpdate(req.params.commentId, {
+    userId,
+    restaurantId,
+    content,
+    rate,
+  });
+  res.status(200).json("update successful");
+});
+
+//삭제
 router.delete("/:commentId", async (req, res) => {
   try {
     console.log(req.params.commentId);
