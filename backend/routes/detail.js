@@ -20,9 +20,11 @@ router.get("/like", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  Restaurant.findById(req.params.id).then((result) => {
-    res.json(result);
-  });
+  Restaurant.findById(req.params.id)
+    .populate("comments")
+    .then((result) => {
+      res.json(result);
+    });
 });
 
 router.post("/:id", (req, res) => {
