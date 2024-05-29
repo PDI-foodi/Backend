@@ -13,6 +13,7 @@ const reviewSchema = new mongoose.Schema(
       ref: "Restaurant",
     },
     content: { type: String, required: true },
+    rate: { type: Number, required: true },
   },
   {
     timestamps: true,
