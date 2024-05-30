@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-
+const { verifyToken } = require('../utils/auth'); 
 const Restaurant=require('../models/Restaurant')
-
+const Review=require("../models/Review")
 
 // router.get('/data', async (req, res) => {
 //     try {
@@ -16,8 +16,25 @@ const Restaurant=require('../models/Restaurant')
 //     }
 // });
 
-router.get('/',async (req,res)=>{
+const tokenMiddleware = (req, res, next) => {
+    const token = req.cookies.authToken; // 쿠키에서 토큰 읽기
+  
+    if (!token) {
+      return res.status(403).json({"permission":"access denied"});
+    }
+  
+    try {
+      const decoded = verifyToken(token); // 토큰 검증
+      req.user = decoded; // 검증된 사용자 정보 저장
+      next();
+    } catch (err) {
+      res.status(400).send('Invalid token.');
+    }
+  };
+
+router.get('/',tokenMiddleware,async (req,res)=>{
     try{
+
         const all=await Restaurant.find();
         res.json(all);
     }catch{
