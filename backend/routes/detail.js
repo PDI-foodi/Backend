@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const Restaurant = require("../models/Restaurant");
 const LikeSchema = require("../models/Like");
+const Review = require("../models/Review");
 
 /* router.get("/:id", (req, res) => {
   console.log(req.data);
@@ -21,7 +22,14 @@ router.get("/like", (req, res) => {
 
 router.get("/:id", (req, res) => {
   Restaurant.findById(req.params.id)
-    .populate("comments")
+    .populate({
+      path: "comments",
+      populate: {
+        select: "_id id nickname ",
+        path: "user",
+      },
+    })
+    // .Review.populate("nickname")
     .then((result) => {
       res.json(result);
     });
