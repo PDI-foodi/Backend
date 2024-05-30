@@ -20,7 +20,7 @@ const tokenMiddleware = (req, res, next) => {
     const token = req.cookies.authToken; // 쿠키에서 토큰 읽기
   
     if (!token) {
-      return res.status(403).send({"permission":"access denied"});
+      return res.status(403).json({"permission":"access denied"});
     }
   
     try {
