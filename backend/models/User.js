@@ -78,7 +78,11 @@ userSchema.statics.findPwd = async function (id, nickname) {
 userSchema.statics.resetPwd = async function (id, password) {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-  await this.findOneAndUpdate({ id }, { password: hashedPassword });
+  const user = await this.findOneAndUpdate(
+    { id },
+    { password: hashedPassword }
+  );
+  return user.visibleUser;
 };
 
 const visibleUser = userSchema.virtual("visibleUser");

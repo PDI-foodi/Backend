@@ -59,8 +59,8 @@ router.post("/find-pwd", async (req, res, next) => {
 router.put("/reset-pwd", async (req, res, next) => {
   try {
     const { id, password } = req.body;
-    await User.resetPwd(id, password);
-    res.status(200).json({ message: "비밀번호가 성공적으로 변경되었습니다." });
+    const user = await User.resetPwd(id, password);
+    res.status(200).json(user);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
