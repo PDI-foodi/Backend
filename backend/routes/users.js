@@ -9,9 +9,9 @@ router.post("/signup", async (req, res, next) => {
     const user = await User.signUp(id, password, nickname);
     res.status(201).json(user);
   } catch (err) {
-    if (err.name === 'IdDuplicatedError'){
+    if (err.name === "IdDuplicatedError") {
       return res.status(409).json({ message: err.message });
-    } else if (err.name === 'NicknameDuplicatedError'){
+    } else if (err.name === "NicknameDuplicatedError") {
       return res.status(409).json({ message: err.message });
     }
   }
@@ -32,10 +32,26 @@ router.post("/login", async (req, res, next) => {
     console.log(user);
     res.status(200).json(user);
   } catch (err) {
-    if (err.name === 'IdNotFoundError'){
+    if (err.name === "IdNotFoundError") {
       return res.status(404).json({ message: err.message });
-    } else if (err.name === 'PasswordMismatchError'){
+    } else if (err.name === "PasswordMismatchError") {
       return res.status(401).json({ message: err.message });
+    }
+  }
+});
+
+router.post("/find-pwd", async (req, res, next) => {
+  try {
+    const { id, nickname } = req.body;
+    const user = await User.findPwd(id, nickname);
+    res.status(200).json({ nickname: user.nickname });
+  } catch (err) {
+    if (err.name === "IdNotFoundError") {
+      return res.status(404).json({ message: err.message });
+    } else if (err.name === "NicknameMismatchError") {
+      return res.status(400).json({ message: err.message });
+    } else {
+      return res.status(500).json({ message: err.message });
     }
   }
 });
