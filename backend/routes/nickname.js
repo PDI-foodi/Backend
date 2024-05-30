@@ -26,4 +26,15 @@ router.get("/id", async (req, res) => {
   }
 });
 
+router.get("/idd", async (req, res) => {
+  try {
+    const token = req.cookies.authToken;
+    const decoded = verifyToken(token);
+    const userId = decoded.id;
+    res.json(userId);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;
