@@ -40,6 +40,18 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+router.get("/logout", async (req, res, next) => {
+  try {
+    // res.cookie("authToken", "", {
+    //   httpOnly: true,
+    //   maxAge: 0,
+    // });
+    res.clearCookie("authToken").status(200).json({ message: "로그아웃 성공" });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+});
+
 router.post("/find-pwd", async (req, res, next) => {
   try {
     const { id, nickname } = req.body;
