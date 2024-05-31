@@ -32,7 +32,7 @@ router.post("/", async (req, res, next) => {
     });
 
     res.status(201).json(review);
-    console.log(review);
+    //console.log(review);
   } catch (err) {
     console.error(err);
     res.status(400).json({ message: err.message });
@@ -89,13 +89,14 @@ router.put("/:commentId", async (req, res) => {
 router.delete("/:commentId", async (req, res) => {
   try {
     const review = await Review.findById(req.params.commentId);
+    const userId = req.body.userId;
+    console.log(review, userId);
     if (!review) {
-      return res.status(404).json({ message: "삭제 권한이 업습니다" });
+      return res.status(404).json({ message: "리뷰를 찾을 수 없습니다." });
     }
 
-    const userId = req.body.userId;
     if (review.userId.toString() !== userId) {
-      return res.status(403).json({ message: "삭제 권한이 업습니다" });
+      return res.status(403).json({ message: "삭제 권한이 없습니다." });
     }
 
     const restaurantId = review.restaurantId;
@@ -103,15 +104,15 @@ router.delete("/:commentId", async (req, res) => {
 
     const allReview = await Review.find({ restaurantId });
     const averageRate =
-      allReview.reduce((sum, review) => sum + review.rate, 0) /
+      allReview.reduce((sum, review) => sum + review?.rate, 0) /
       allReview.length;
 
     const averageRateRounded = parseFloat(averageRate.toFixed(1));
     await Restaurant.findByIdAndUpdate(restaurantId, {
-      rate: averageRateRounded,
+      rate: allReview.length > 0 ? averageRateRounded : 0,
     });
 
-    res.status(200).json("delete successful");
+    res.status(200).json("삭제되었습니다.");
   } catch (err) {
     console.error(err);
     res.status(400).json({ message: err.message });
